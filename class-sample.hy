@@ -12,8 +12,8 @@
    sub-field2 ""]
 
   ;; Constructor
-  (defn --init-- [self]
-    (setv self.sub-field2 "RX"))
+  (defn --init-- [self x y]
+    (setv self.sub-field2 (+ x y)))
 
   ;; Destructor
   (defn --del-- [self]
@@ -26,7 +26,7 @@
 
 (defmain
   [&rest args]
-  (def ins (SubClass))
+  (def ins (SubClass "R" "X"))
   ;; Method呼び出し
   (.sub-method ins)
   ;; フィールド呼び出し
