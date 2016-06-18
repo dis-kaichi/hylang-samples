@@ -10,9 +10,9 @@
 ;; 定数
 ;; ----------------------------------------
 ;; データファイルパス
-(setv +file-path+ "data/matrix001.csv")
-(setv +output-path1+ "data/output001.txt")
-(setv +output-path2+ "data/output002.csv")
+(setv +FILE-PATH+ "data/matrix001.csv")
+(setv +OUTPUT-PATH1+ "data/output001.txt")
+(setv +OUTPUT-PATH2+ "data/output002.csv")
 
 ;; ----------------------------------------
 ;; Functions
@@ -22,7 +22,7 @@
   ;; ----------------------------------------
   ;; Inner Functions
   ;; ----------------------------------------
-  (defun is-skip-line [line]
+  (defun skip-line-p [line]
     ;; 空行 or 先頭が"#"で始まる場合はTrue
     (or (empty? line) (= (first line) "#")))
   ;; ----------------------------------------
@@ -32,7 +32,7 @@
   (with [[fp (open path)]]
         (for [line (.readlines fp)]
              (setv stripped (.strip line))
-             (when (is-skip-line stripped)
+             (when (skip-line-p stripped)
                (continue))
              (.append data stripped)))
   data)
@@ -41,7 +41,7 @@
   ;; ----------------------------------------
   ;; Inner Functions
   ;; ----------------------------------------
-  (defun is-skip-line [line]
+  (defun skip-line-p [line]
     ;; 空行 or 先頭が"#"で始まる場合はTrue
     (or (empty? line)
         (and (not (empty? (first line)))
@@ -60,7 +60,7 @@
   (with [[fp (open path)]]
         (setv reader (.reader csv fp))
         (for [line reader]
-             (when (is-skip-line line)
+             (when (skip-line-p line)
                (continue))
              (.append data line)
              ))
@@ -91,12 +91,12 @@
 
 (defun logic []
   ;; ファイル読み込み
-  (print (normal-reader +file-path+))
-  (print (csv-reader +file-path+))
+  (print (normal-reader +FILE-PATH+))
+  (print (csv-reader +FILE-PATH+))
   ;; ファイル書き込み
   (setv data [[100 200 300] ["a" "b" "c"]])
-  (normal-writer +output-path1+ data)
-  (csv-writer +output-path2+ data))
+  (normal-writer +OUTPUT-PATH1+ data)
+  (csv-writer +OUTPUT-PATH2+ data))
 
 ;; ----------------------------------------
 ;; Main
