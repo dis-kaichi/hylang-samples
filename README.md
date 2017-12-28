@@ -11,3 +11,4 @@
 | function-call-sample.hy     | 関数/メソッド呼び出し(sort, sortedについて記述) |
 | hydjango                    | Hylang + Djangoサンプル<br> 取り敢えずviews以下をHylangで書ける様にしてみた。|
 | matrix-sample.hy            | 行列的にデータを扱う例        |
+| libsample.hy                | 自作ライブラリ読み込み        |
